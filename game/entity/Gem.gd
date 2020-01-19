@@ -14,9 +14,11 @@ var max_queue_size = 1
 onready var prev_pos = position
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	randomize()
-	set_color(int(randf() * 2 + 0.5))
-	pass # Replace with function body.
+	var slots = get_tree().get_nodes_in_group("slots")
+	for slot in slots:
+		if position == slot.position:
+			print_debug("setting color...")
+			set_color(slot.get_color())
 
 func set_color(col):
 	$Sprite.frame = col
@@ -122,7 +124,8 @@ func determine_neighbors():
 			clickable = false
 			return
 
-func rotate_neighbors():
+
+func rotate_neighbors(immediate=false):
 	determine_neighbors()
 	if not clickable:
 		return
@@ -140,12 +143,13 @@ func rotate_neighbors():
 		node.set_wait_time(max_wait_time)
 	
 	var nw_pos = neighbors["nw"]["node"].final_target_pos()
-	neighbors["nw"]["node"].start_move_to(neighbors["w"]["node"].final_target_pos())
-	neighbors["w"]["node"].start_move_to(neighbors["sw"]["node"].final_target_pos())
-	neighbors["sw"]["node"].start_move_to(neighbors["se"]["node"].final_target_pos())
-	neighbors["se"]["node"].start_move_to(neighbors["e"]["node"].final_target_pos())
-	neighbors["e"]["node"].start_move_to(neighbors["ne"]["node"].final_target_pos())
-	neighbors["ne"]["node"].start_move_to(nw_pos)
+	
+	neighbors["nw"]["node"].start_move_to(neighbors["w"]["node"].final_target_pos(), immediate)
+	neighbors["w"]["node"].start_move_to(neighbors["sw"]["node"].final_target_pos(), immediate)
+	neighbors["sw"]["node"].start_move_to(neighbors["se"]["node"].final_target_pos(), immediate)
+	neighbors["se"]["node"].start_move_to(neighbors["e"]["node"].final_target_pos(), immediate)
+	neighbors["e"]["node"].start_move_to(neighbors["ne"]["node"].final_target_pos(), immediate)
+	neighbors["ne"]["node"].start_move_to(nw_pos, immediate)
 
 func _on_Gem_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton \
@@ -153,8 +157,14 @@ func _on_Gem_input_event(viewport, event, shape_idx):
 	and event.pressed == true:
 		rotate_neighbors()
 
-func start_move_to(pos):
-	move_queue.push_back(pos)
+func start_move_to(pos, immediate=false):
+	if immediate:
+		position = pos
+		target_pos = pos
+		prev_pos = pos
+		move_dir_progress = 0
+	else:
+		move_queue.push_back(pos)
 	
 	
 func _on_Gem_area_entered(area):

@@ -1,19 +1,137 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://img/playboard.png" type="Texture" id=1]
-[ext_resource path="res://entity/Gem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scene/game.gd" type="Script" id=1]
+[ext_resource path="res://img/playboard.png" type="Texture" id=2]
 [ext_resource path="res://entity/Slot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entity/Gem.tscn" type="PackedScene" id=4]
 
 [node name="Game" type="Node2D"]
+script = ExtResource( 1 )
 
 [node name="Background" type="Sprite" parent="."]
+visible = false
 position = Vector2( 512, 300 )
 z_index = -10
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
+
+[node name="Slots" type="Node2D" parent="."]
+editor/display_folded = true
+z_index = 5
+
+[node name="Slot" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 448, 140 )
+
+[node name="Slot12" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 416, 196 )
+
+[node name="Slot19" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 384, 252 )
+
+[node name="Slot25" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 384, 364 )
+
+[node name="Slot32" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 352, 308 )
+
+[node name="Slot14" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 416, 420 )
+
+[node name="Slot8" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 448, 476 )
+
+[node name="Slot2" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 512, 140 )
+
+[node name="Slot9" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 480, 196 )
+
+[node name="Slot22" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 448, 252 )
+
+[node name="Slot26" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 448, 364 )
+
+[node name="Slot33" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 416, 308 )
+
+[node name="Slot17" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 480, 420 )
+
+[node name="Slot5" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 512, 476 )
+
+[node name="Slot3" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 576, 140 )
+
+[node name="Slot10" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 544, 196 )
+
+[node name="Slot21" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 512, 252 )
+
+[node name="Slot27" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 512, 364 )
+
+[node name="Slot34" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 480, 308 )
+
+[node name="Slot16" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 544, 420 )
+
+[node name="Slot6" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 576, 476 )
+
+[node name="Slot4" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 640, 140 )
+
+[node name="Slot11" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 608, 196 )
+
+[node name="Slot20" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 576, 252 )
+
+[node name="Slot28" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 576, 364 )
+
+[node name="Slot31" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 544, 308 )
+
+[node name="Slot15" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 608, 420 )
+
+[node name="Slot13" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 672, 196 )
+
+[node name="Slot23" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 640, 252 )
+
+[node name="Slot29" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 640, 364 )
+
+[node name="Slot36" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 608, 308 )
+
+[node name="Slot24" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 704, 252 )
+
+[node name="Slot30" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 704, 364 )
+
+[node name="Slot35" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 672, 308 )
+
+[node name="Slot37" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 736, 308 )
+
+[node name="Slot18" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 672, 420 )
+
+[node name="Slot7" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 640, 476 )
 
 [node name="Gems" type="Node2D" parent="."]
 editor/display_folded = true
@@ -23,263 +141,140 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Gem21" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem21" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 640, 252 )
 color = 0
 
-[node name="Gem22" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem22" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 672, 308 )
 color = 0
 
-[node name="Gem23" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem23" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 640, 364 )
 color = 0
 
-[node name="Gem24" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem24" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 608, 420 )
 color = 0
 
-[node name="Gem13" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem13" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 576, 364 )
 color = 0
 
-[node name="Gem14" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem14" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 512, 364 )
 color = 0
 
-[node name="Gem15" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem15" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 448, 364 )
 color = 2
 
-[node name="Gem16" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem16" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 384, 364 )
 color = 2
 
-[node name="Gem17" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem17" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 416, 420 )
 color = 2
 
-[node name="Gem18" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem18" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 480, 420 )
 color = 0
 
-[node name="Gem19" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem19" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 544, 420 )
 
-[node name="Gem" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 352, 308 )
 
-[node name="Gem2" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem2" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 416, 308 )
 color = 0
 
-[node name="Gem3" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem3" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 480, 308 )
 
-[node name="Gem4" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem4" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 544, 308 )
 color = 2
 
-[node name="Gem5" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem5" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 608, 308 )
 
-[node name="Gem6" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem6" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 576, 252 )
 
-[node name="Gem7" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem7" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 512, 252 )
 color = 2
 
-[node name="Gem8" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem8" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 448, 252 )
 color = 2
 
-[node name="Gem9" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem9" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 384, 252 )
 color = 2
 
-[node name="Gem10" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem10" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 416, 196 )
 
-[node name="Gem34" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem34" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 448, 140 )
 
-[node name="Gem35" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem35" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 512, 140 )
 
-[node name="Gem36" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem36" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 576, 140 )
 
-[node name="Gem37" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem37" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 640, 140 )
 
-[node name="Gem11" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem11" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 480, 196 )
 color = 0
 
-[node name="Gem12" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem12" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 544, 196 )
 color = 0
 
-[node name="Gem20" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem20" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 608, 196 )
 color = 0
 
-[node name="Gem25" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem25" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 672, 196 )
 color = 0
 
-[node name="Gem26" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem26" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 704, 252 )
 color = 0
 
-[node name="Gem27" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem27" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 736, 308 )
 color = 0
 
-[node name="Gem28" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem28" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 704, 364 )
 color = 0
 
-[node name="Gem29" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem29" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 672, 420 )
 color = 0
 
-[node name="Gem30" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem30" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 640, 476 )
 color = 0
 
-[node name="Gem31" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem31" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 576, 476 )
 color = 0
 
-[node name="Gem32" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem32" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 512, 476 )
 color = 0
 
-[node name="Gem33" parent="Gems" instance=ExtResource( 2 )]
+[node name="Gem33" parent="Gems" instance=ExtResource( 4 )]
 position = Vector2( 448, 476 )
 color = 0
-
-[node name="Slots" type="Node2D" parent="."]
-z_index = 5
-
-[node name="Slot" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 448, 140 )
-
-[node name="Slot8" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 448, 476 )
-
-[node name="Slot11" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 480, 420 )
-
-[node name="Slot17" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 480, 196 )
-
-[node name="Slot22" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 512, 252 )
-
-[node name="Slot29" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 512, 364 )
-
-[node name="Slot35" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 544, 308 )
-
-[node name="Slot13" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 416, 420 )
-
-[node name="Slot16" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 416, 196 )
-
-[node name="Slot25" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 384, 252 )
-
-[node name="Slot26" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 384, 364 )
-
-[node name="Slot34" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 416, 308 )
-
-[node name="Slot40" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 352, 308 )
-
-[node name="Slot21" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 448, 252 )
-
-[node name="Slot28" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 448, 364 )
-
-[node name="Slot33" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 480, 308 )
-
-[node name="Slot2" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 512, 140 )
-
-[node name="Slot7" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 512, 476 )
-
-[node name="Slot12" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 544, 420 )
-
-[node name="Slot15" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 544, 196 )
-
-[node name="Slot19" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 576, 252 )
-
-[node name="Slot30" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 576, 364 )
-
-[node name="Slot36" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 608, 308 )
-
-[node name="Slot3" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 576, 140 )
-
-[node name="Slot5" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 576, 476 )
-
-[node name="Slot10" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 608, 420 )
-
-[node name="Slot18" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 608, 196 )
-
-[node name="Slot23" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 640, 252 )
-
-[node name="Slot32" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 640, 364 )
-
-[node name="Slot39" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 672, 308 )
-
-[node name="Slot4" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 640, 140 )
-
-[node name="Slot6" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 640, 476 )
-
-[node name="Slot9" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 672, 420 )
-
-[node name="Slot14" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 672, 196 )
-
-[node name="Slot20" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 704, 252 )
-
-[node name="Slot27" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 704, 364 )
-
-[node name="Slot37" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 736, 308 )
-
-[node name="Slot24" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 704, 252 )
-
-[node name="Slot31" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 704, 364 )
-
-[node name="Slot38" parent="Slots" instance=ExtResource( 3 )]
-position = Vector2( 736, 308 )
