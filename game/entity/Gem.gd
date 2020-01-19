@@ -9,6 +9,7 @@ var move_dir_sec = 0.5
 var move_dir_progress = 0.0
 var neighbors = {}
 var move_queue = []
+var wait_time = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,6 +25,10 @@ func get_color():
 	return color
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if wait_time > 0 and position == target_pos:
+		wait_time -= delta
+		return
+		
 	if target_pos == position and len(move_queue) != 0:
 		target_pos = move_queue.pop_front()
 		move_dir_progress = 0.0
@@ -88,7 +93,6 @@ func determine_neighbors():
 				neighbor["node"] = gem
 	for neighbor in neighbors.values():
 		if neighbor["node"] == null:
-			print_debug("found a null, can't move")
 			clickable = false
 
 func rotate_neighbors():
@@ -98,6 +102,19 @@ func rotate_neighbors():
 	
 	if len(move_queue) > 0:
 		return
+	
+	var least_progress = move_dir_sec
+	for neighbor in neighbors.values():
+		var node = neighbor["node"]
+		if node.target_pos == node.position:
+			continue
+		least_progress = min(node.move_dir_progress, least_progress)
+	
+	if least_progress < move_dir_sec:
+		for neighbor in neighbors.values():
+			var node = neighbor["node"]
+			node.wait_time = (move_dir_sec - least_progress) - node.move_dir_progress
+	
 	var nw_pos = neighbors["nw"]["node"].final_target_pos()
 	neighbors["nw"]["node"].start_move_to(neighbors["w"]["node"].final_target_pos())
 	neighbors["w"]["node"].start_move_to(neighbors["sw"]["node"].final_target_pos())
