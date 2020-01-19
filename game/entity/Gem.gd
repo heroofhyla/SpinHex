@@ -9,6 +9,8 @@ var move_dir_progress = 0.0
 var neighbors = {}
 var move_queue = []
 var wait_time = 0.0
+var max_queue_size = 1
+
 onready var prev_pos = position
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,10 +26,10 @@ func time_until_ready():
 	if is_idle():
 		return 0
 	
-	return move_dir_sec - move_dir_progress
+	return len(move_queue) * move_dir_sec + move_dir_sec - move_dir_progress
 
 func is_idle():
-	if target_pos == position and len(move_queue) == 0:
+	if target_pos == position and len(move_queue) == 0 and move_dir_progress == 0:
 		return true
 	return false
 
@@ -38,11 +40,10 @@ func get_color():
 	return color
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$WaitTime.text = "%.2f" % wait_time
 	if is_idle():
-		$Idle.text = "Idle"
+		z_index = 0
 	else:
-		$Idle.text = "Busy: %.2f" % time_until_ready()
+		z_index = 15
 	
 	if wait_time > 0 and position == target_pos:
 		wait_time -= delta
@@ -116,6 +117,10 @@ func determine_neighbors():
 	for neighbor in neighbors.values():
 		if neighbor["node"] == null:
 			clickable = false
+			return
+		if len(neighbor["node"].move_queue) >= max_queue_size:
+			clickable = false
+			return
 
 func rotate_neighbors():
 	determine_neighbors()

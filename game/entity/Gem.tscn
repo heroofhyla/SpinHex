@@ -4,7 +4,7 @@
 [ext_resource path="res://img/gem.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 28.0
+radius = 26.0
 
 [node name="Gem" type="Area2D" groups=[
 "gems",
@@ -21,22 +21,4 @@ frame = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 1 )
-
-[node name="WaitTime" type="Label" parent="."]
-visible = false
-margin_left = -20.0
-margin_top = -6.0
-margin_right = 20.0
-margin_bottom = 8.0
-text = "0"
-align = 1
-valign = 1
-
-[node name="Idle" type="Label" parent="."]
-visible = false
-margin_left = -18.0
-margin_top = -25.0
-margin_right = 22.0
-margin_bottom = -11.0
-text = "Idle"
 [connection signal="input_event" from="." to="." method="_on_Gem_input_event"]
