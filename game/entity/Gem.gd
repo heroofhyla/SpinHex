@@ -10,14 +10,15 @@ var neighbors = {}
 var move_queue = []
 var wait_time = 0.0
 var max_queue_size = 1
-
+var correct_spot = false
+export var initialized = false
+onready var audio = game.get_node("GemMoveSFX")
 onready var prev_pos = position
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var slots = get_tree().get_nodes_in_group("slots")
 	for slot in slots:
 		if position == slot.position:
-			print_debug("setting color...")
 			set_color(slot.get_color())
 
 func set_color(col):
@@ -30,6 +31,8 @@ func time_until_ready():
 	
 	return len(move_queue) * move_dir_sec + move_dir_sec - move_dir_progress
 
+func clear_queue():
+	move_queue = []
 func is_idle():
 	if target_pos == position and len(move_queue) == 0 and move_dir_progress == 0:
 		return true
@@ -56,6 +59,7 @@ func _process(delta):
 	if target_pos == position and len(move_queue) != 0:
 		target_pos = move_queue.pop_front()
 		move_dir_progress = 0.0
+		audio.play()
 	if target_pos != position:
 		move_dir_progress += delta
 		var progress_frac = move_dir_progress / move_dir_sec
@@ -150,11 +154,13 @@ func rotate_neighbors(immediate=false):
 	neighbors["se"]["node"].start_move_to(neighbors["e"]["node"].final_target_pos(), immediate)
 	neighbors["e"]["node"].start_move_to(neighbors["ne"]["node"].final_target_pos(), immediate)
 	neighbors["ne"]["node"].start_move_to(nw_pos, immediate)
-
+	
 func _on_Gem_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton \
 	and event.button_index == BUTTON_LEFT \
 	and event.pressed == true:
+		if game.mouse_locked:
+			return
 		rotate_neighbors()
 
 func start_move_to(pos, immediate=false):
@@ -166,10 +172,17 @@ func start_move_to(pos, immediate=false):
 	else:
 		move_queue.push_back(pos)
 	
-	
+
+func is_correct():
+	return correct_spot
+
 func _on_Gem_area_entered(area):
 	if area.get_color() == get_color():
 		$Sprite.modulate = Color(1,1,1, 1)
+		correct_spot = true
+		if initialized:
+			game.check_win()
 	else:
 		$Sprite.modulate = Color(0.5, 0.5, 0.5, 1)
+		correct_spot = false
 	pass # Replace with function body.
