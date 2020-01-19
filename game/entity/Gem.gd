@@ -157,3 +157,9 @@ func start_move_to(pos):
 	move_queue.push_back(pos)
 	
 	
+func _on_Gem_area_entered(area):
+	if area.get_color() == get_color():
+		$Sprite.modulate = Color(1,1,1, 1)
+	else:
+		$Sprite.modulate = Color(0.5, 0.5, 0.5, 1)
+	pass # Replace with function body.

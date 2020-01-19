@@ -2,7 +2,7 @@
 
 [ext_resource path="res://img/playboard.png" type="Texture" id=1]
 [ext_resource path="res://entity/Gem.tscn" type="PackedScene" id=2]
-[ext_resource path="res://img/gem.png" type="Texture" id=3]
+[ext_resource path="res://entity/Slot.tscn" type="PackedScene" id=3]
 
 [node name="Game" type="Node2D"]
 
@@ -161,267 +161,125 @@ color = 0
 position = Vector2( 448, 476 )
 color = 0
 
-[node name="Rings" type="Node2D" parent="."]
-editor/display_folded = true
-position = Vector2( 480, 308 )
+[node name="Slots" type="Node2D" parent="."]
 z_index = 5
 
-[node name="Sprite" type="Sprite" parent="Rings"]
-position = Vector2( -32, 56 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 5
+[node name="Slot" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 448, 140 )
 
-[node name="Sprite22" type="Sprite" parent="Rings"]
-position = Vector2( -64, 112 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot8" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 448, 476 )
 
-[node name="Sprite30" type="Sprite" parent="Rings"]
-position = Vector2( -32, 168 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot11" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 480, 420 )
 
-[node name="Sprite31" type="Sprite" parent="Rings"]
-position = Vector2( -32, -168 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot17" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 480, 196 )
 
-[node name="Sprite25" type="Sprite" parent="Rings"]
-position = Vector2( -64, -112 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot22" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 512, 252 )
 
-[node name="Sprite16" type="Sprite" parent="Rings"]
-position = Vector2( -32, -56 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot29" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 512, 364 )
 
-[node name="Sprite2" type="Sprite" parent="Rings"]
-position = Vector2( 32, 56 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot35" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 544, 308 )
 
-[node name="Sprite23" type="Sprite" parent="Rings"]
-position = Vector2( 0, 112 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot13" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 416, 420 )
 
-[node name="Sprite33" type="Sprite" parent="Rings"]
-position = Vector2( 32, 168 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot16" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 416, 196 )
 
-[node name="Sprite36" type="Sprite" parent="Rings"]
-position = Vector2( 32, -168 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot25" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 384, 252 )
 
-[node name="Sprite28" type="Sprite" parent="Rings"]
-position = Vector2( 0, -112 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot26" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 384, 364 )
 
-[node name="Sprite17" type="Sprite" parent="Rings"]
-position = Vector2( 32, -56 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot34" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 416, 308 )
 
-[node name="Sprite3" type="Sprite" parent="Rings"]
-position = Vector2( 96, 56 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 6
+[node name="Slot40" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 352, 308 )
 
-[node name="Sprite24" type="Sprite" parent="Rings"]
-position = Vector2( 64, 112 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot21" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 448, 252 )
 
-[node name="Sprite34" type="Sprite" parent="Rings"]
-position = Vector2( 96, 168 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot28" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 448, 364 )
 
-[node name="Sprite35" type="Sprite" parent="Rings"]
-position = Vector2( 96, -168 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot33" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 480, 308 )
 
-[node name="Sprite29" type="Sprite" parent="Rings"]
-position = Vector2( 64, -112 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot2" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 512, 140 )
 
-[node name="Sprite18" type="Sprite" parent="Rings"]
-position = Vector2( 96, -56 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot7" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 512, 476 )
 
-[node name="Sprite4" type="Sprite" parent="Rings"]
-position = Vector2( 160, 56 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot12" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 544, 420 )
 
-[node name="Sprite20" type="Sprite" parent="Rings"]
-position = Vector2( 128, 112 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 5
+[node name="Slot15" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 544, 196 )
 
-[node name="Sprite32" type="Sprite" parent="Rings"]
-position = Vector2( 160, 168 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot19" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 576, 252 )
 
-[node name="Sprite37" type="Sprite" parent="Rings"]
-position = Vector2( 160, -168 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot30" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 576, 364 )
 
-[node name="Sprite27" type="Sprite" parent="Rings"]
-position = Vector2( 128, -112 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 6
+[node name="Slot36" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 608, 308 )
 
-[node name="Sprite14" type="Sprite" parent="Rings"]
-position = Vector2( 160, -56 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot3" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 576, 140 )
 
-[node name="Sprite5" type="Sprite" parent="Rings"]
-position = Vector2( 224, 56 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot5" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 576, 476 )
 
-[node name="Sprite21" type="Sprite" parent="Rings"]
-position = Vector2( 192, 112 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot10" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 608, 420 )
 
-[node name="Sprite26" type="Sprite" parent="Rings"]
-position = Vector2( 192, -112 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot18" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 608, 196 )
 
-[node name="Sprite15" type="Sprite" parent="Rings"]
-position = Vector2( 224, -56 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot23" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 640, 252 )
 
-[node name="Sprite6" type="Sprite" parent="Rings"]
-position = Vector2( -96, 56 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot32" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 640, 364 )
 
-[node name="Sprite19" type="Sprite" parent="Rings"]
-position = Vector2( -96, -56 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot39" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 672, 308 )
 
-[node name="Sprite7" type="Sprite" parent="Rings"]
-position = Vector2( -128, 0 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot4" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 640, 140 )
 
-[node name="Sprite8" type="Sprite" parent="Rings"]
-position = Vector2( -64, 0 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot6" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 640, 476 )
 
-[node name="Sprite9" type="Sprite" parent="Rings"]
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot9" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 672, 420 )
 
-[node name="Sprite10" type="Sprite" parent="Rings"]
-position = Vector2( 64, 0 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot14" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 672, 196 )
 
-[node name="Sprite11" type="Sprite" parent="Rings"]
-position = Vector2( 128, 0 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot20" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 704, 252 )
 
-[node name="Sprite12" type="Sprite" parent="Rings"]
-position = Vector2( 192, 0 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot27" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 704, 364 )
 
-[node name="Sprite13" type="Sprite" parent="Rings"]
-position = Vector2( 256, 0 )
-texture = ExtResource( 3 )
-vframes = 4
-hframes = 4
-frame = 4
+[node name="Slot37" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 736, 308 )
 
-[node name="Slot" type="Area2D" parent="."]
+[node name="Slot24" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 704, 252 )
+
+[node name="Slot31" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 704, 364 )
+
+[node name="Slot38" parent="Slots" instance=ExtResource( 3 )]
+position = Vector2( 736, 308 )

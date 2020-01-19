@@ -1,26 +1,21 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://entity/Gem.gd" type="Script" id=1]
+[ext_resource path="res://entity/Slot.gd" type="Script" id=1]
 [ext_resource path="res://img/gem.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 26.0
 
-[node name="Gem" type="Area2D" groups=[
-"gems",
-]]
-collision_mask = 3
+[node name="Slot" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 1 )
-color = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 4
-frame = 1
+frame = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 1 )
-[connection signal="area_entered" from="." to="." method="_on_Gem_area_entered"]
-[connection signal="input_event" from="." to="." method="_on_Gem_input_event"]
