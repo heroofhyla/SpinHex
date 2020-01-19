@@ -8,6 +8,7 @@ onready var game = get_node("/root/Game")
 var move_dir_sec = 0.5
 var move_dir_progress = 0.0
 var neighbors = {}
+var move_queue = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,6 +24,9 @@ func get_color():
 	return color
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if target_pos == position and len(move_queue) != 0:
+		target_pos = move_queue.pop_front()
+		move_dir_progress = 0.0
 	if target_pos != position:
 		move_dir_progress += delta
 		var progress_frac = move_dir_progress / move_dir_sec
@@ -36,37 +40,42 @@ func _process(delta):
 			position.y += y_delta * progress_frac
 	elif move_dir_progress != 0.0:
 		move_dir_progress = 0.0
-			
+
+func final_target_pos():
+	if len(move_queue) > 0:
+		return move_queue.back()
+	return target_pos
+	
 func determine_neighbors():
 	neighbors = {
 		"ne": {
-			"x": target_pos.x - 32,
-			"y": target_pos.y - 56,
+			"x": final_target_pos().x - 32,
+			"y": final_target_pos().y - 56,
 			"node": null
 		},
 		"e": {
-			"x": target_pos.x - 64,
-			"y": target_pos.y,
+			"x": final_target_pos().x - 64,
+			"y": final_target_pos().y,
 			"node": null
 		},
 		"se": {
-			"x": target_pos.x - 32,
-			"y": target_pos.y + 56,
+			"x": final_target_pos().x - 32,
+			"y": final_target_pos().y + 56,
 			"node": null
 		},
 		"sw": {
-			"x": target_pos.x + 32,
-			"y": target_pos.y + 56,
+			"x": final_target_pos().x + 32,
+			"y": final_target_pos().y + 56,
 			"node": null
 		},
 		"nw": {
-			"x": target_pos.x + 32,
-			"y": target_pos.y - 56,
+			"x": final_target_pos().x + 32,
+			"y": final_target_pos().y - 56,
 			"node": null
 		},
 		"w": {
-			"x": target_pos.x + 64,
-			"y": target_pos.y,
+			"x": final_target_pos().x + 64,
+			"y": final_target_pos().y,
 			"node": null
 		}
 	}
@@ -74,8 +83,8 @@ func determine_neighbors():
 	var gems = get_tree().get_nodes_in_group("gems")
 	for gem in gems:
 		for neighbor in neighbors.values():
-			if gem.target_pos.x == neighbor["x"] \
-			and gem.target_pos.y == neighbor["y"]:
+			if gem.final_target_pos().x == neighbor["x"] \
+			and gem.final_target_pos().y == neighbor["y"]:
 				neighbor["node"] = gem
 	for neighbor in neighbors.values():
 		if neighbor["node"] == null:
@@ -86,24 +95,24 @@ func rotate_neighbors():
 	determine_neighbors()
 	if not clickable:
 		return
-		
-	var nw_pos = neighbors["nw"]["node"].target_pos
-	neighbors["nw"]["node"].start_move_to(neighbors["w"]["node"].target_pos)
-	neighbors["w"]["node"].start_move_to(neighbors["sw"]["node"].target_pos)
-	neighbors["sw"]["node"].start_move_to(neighbors["se"]["node"].target_pos)
-	neighbors["se"]["node"].start_move_to(neighbors["e"]["node"].target_pos)
-	neighbors["e"]["node"].start_move_to(neighbors["ne"]["node"].target_pos)
+	
+	if len(move_queue) > 0:
+		return
+	var nw_pos = neighbors["nw"]["node"].final_target_pos()
+	neighbors["nw"]["node"].start_move_to(neighbors["w"]["node"].final_target_pos())
+	neighbors["w"]["node"].start_move_to(neighbors["sw"]["node"].final_target_pos())
+	neighbors["sw"]["node"].start_move_to(neighbors["se"]["node"].final_target_pos())
+	neighbors["se"]["node"].start_move_to(neighbors["e"]["node"].final_target_pos())
+	neighbors["e"]["node"].start_move_to(neighbors["ne"]["node"].final_target_pos())
 	neighbors["ne"]["node"].start_move_to(nw_pos)
 
 func _on_Gem_input_event(viewport, event, shape_idx):
-	
 	if event is InputEventMouseButton \
 	and event.button_index == BUTTON_LEFT \
 	and event.pressed == true:
 		rotate_neighbors()
 
 func start_move_to(pos):
-	target_pos = pos
-	move_dir_progress = 0
+	move_queue.push_back(pos)
 	
 	
