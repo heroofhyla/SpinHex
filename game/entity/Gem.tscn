@@ -20,6 +20,7 @@ hframes = 4
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 [connection signal="area_entered" from="." to="." method="_on_Gem_area_entered"]
 [connection signal="input_event" from="." to="." method="_on_Gem_input_event"]
