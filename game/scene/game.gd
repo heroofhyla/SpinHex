@@ -4,7 +4,7 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
-var scrambles = 5
+var scrambles = 1000
 var mouse_locked = false
 onready var gems = get_tree().get_nodes_in_group("gems")
 # Called when the node enters the scene tree for the first time.

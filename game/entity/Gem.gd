@@ -2,6 +2,7 @@ extends Area2D
 
 export var color = 0 #setget set_color, get_color
 export var clickable = true
+export var on_edge = false
 onready var target_pos = position
 onready var game = get_node("/root/Game")
 var move_dir_sec = 0.25
@@ -12,7 +13,8 @@ var wait_time = 0.0
 var max_queue_size = 1
 var correct_spot = false
 export var initialized = false
-onready var audio = game.get_node("GemMoveSFX")
+onready var move_sfx = game.get_node("Audio/GemMoveSFX")
+onready var cant_move_sfx = game.get_node("Audio/CantMoveSFX")
 onready var prev_pos = position
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -59,7 +61,7 @@ func _process(delta):
 	if target_pos == position and len(move_queue) != 0:
 		target_pos = move_queue.pop_front()
 		move_dir_progress = 0.0
-		audio.play()
+		move_sfx.play()
 	if target_pos != position:
 		move_dir_progress += delta
 		var progress_frac = move_dir_progress / move_dir_sec
@@ -114,6 +116,7 @@ func determine_neighbors():
 		}
 	}
 	clickable = true
+	on_edge = false
 	var gems = get_tree().get_nodes_in_group("gems")
 	for gem in gems:
 		for neighbor in neighbors.values():
@@ -123,6 +126,7 @@ func determine_neighbors():
 	for neighbor in neighbors.values():
 		if neighbor["node"] == null:
 			clickable = false
+			on_edge = true
 			return
 		if len(neighbor["node"].move_queue) >= max_queue_size:
 			clickable = false
@@ -131,12 +135,11 @@ func determine_neighbors():
 
 func rotate_neighbors(immediate=false):
 	determine_neighbors()
-	if not clickable:
+	if not clickable or len(move_queue) > 0:
+		if on_edge and not immediate:
+			if not cant_move_sfx.playing:
+				cant_move_sfx.play()
 		return
-	
-	if len(move_queue) > 0:
-		return
-	
 	var max_wait_time = 0
 	for neighbor in neighbors.values():
 		var node = neighbor["node"]
@@ -159,6 +162,8 @@ func _on_Gem_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton \
 	and event.button_index == BUTTON_LEFT \
 	and event.pressed == true:
+		if not is_idle():
+			return
 		if game.mouse_locked:
 			return
 		rotate_neighbors()
@@ -177,12 +182,13 @@ func is_correct():
 	return correct_spot
 
 func _on_Gem_area_entered(area):
-	if area.get_color() == get_color():
-		$Sprite.modulate = Color(1,1,1, 1)
-		correct_spot = true
-		if initialized:
-			game.check_win()
-	else:
-		$Sprite.modulate = Color(0.5, 0.5, 0.5, 1)
-		correct_spot = false
+	if area.is_in_group("slots"):
+		if area.get_color() == get_color():
+			$Sprite.modulate = Color(1,1,1, 1)
+			correct_spot = true
+			if initialized:
+				game.check_win()
+		else:
+			$Sprite.modulate = Color(0.5, 0.5, 0.5, 1)
+			correct_spot = false
 	pass # Replace with function body.

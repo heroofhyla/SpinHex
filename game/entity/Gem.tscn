@@ -4,7 +4,7 @@
 [ext_resource path="res://img/gem.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 26.0
+radius = 32.0
 
 [node name="Gem" type="Area2D" groups=[
 "gems",
@@ -20,7 +20,6 @@ hframes = 4
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 1 )
 [connection signal="area_entered" from="." to="." method="_on_Gem_area_entered"]
 [connection signal="input_event" from="." to="." method="_on_Gem_input_event"]
