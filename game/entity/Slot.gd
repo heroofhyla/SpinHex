@@ -20,3 +20,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Slot_area_entered(area):
+	if area.is_in_group("gems"):
+		if area.get_color() == get_color():
+			$Sprite.modulate = Color(1,1,1, 1)
+		else:
+			$Sprite.modulate = Color(0.5, 0.5, 0.5, 1)
+	pass # Replace with function body.

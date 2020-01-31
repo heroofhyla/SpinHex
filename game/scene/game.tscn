@@ -20,7 +20,6 @@ __meta__ = {
 }
 
 [node name="Slots" type="Node2D" parent="."]
-editor/display_folded = true
 z_index = 5
 
 [node name="Slot" parent="Slots" instance=ExtResource( 3 )]
